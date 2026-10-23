@@ -39,7 +39,10 @@ O planner de papel (no Samsung Notes) funcionava como visual, mas era estático:
 
 ### Regra de realocação
 
-Quando o dia acaba e uma ocorrência flexível (X vezes por semana/mês) ficou pendente, ela é movida para o dia restante do período **com menos ocorrências**. Tarefas avulsas com data e tarefas diárias **não** são movidas.
+- Quando o dia acaba e uma ocorrência de tarefa semanal ou avulsa ficou pendente, ela é movida para o dia restante da semana **com menos ocorrências**. Se a semana acabou, ela vai para a semana seguinte.
+- Pelo botão "Adiar", a Letícia aplica a mesma regra na hora.
+- Tarefas mensais não ficam presas a um dia: elas formam o checklist do mês.
+- Tarefas diárias **não** são movidas. Se ela não fez, aquele dia fica com a porcentagem menor.
 
 ## Telas do MVP
 
@@ -59,9 +62,13 @@ Quando o dia acaba e uma ocorrência flexível (X vezes por semana/mês) ficou p
 2. **Lembretes**: APK via Capacitor, com notificações configuráveis.
 3. **Talvez**: histórico mensal e gráficos de evolução.
 
-## Pontos em aberto
+## Decisões confirmadas com a Letícia
 
-- A % do dia conta **só tarefas** ou também hábitos e estudo?
-- No fim da semana, uma tarefa flexível não feita **some** (a semana recomeça) ou **acumula** para a próxima?
-- "Sono" quer dizer "dormir até 22h", "acordar às 6h" ou os dois?
-- A semana começa na segunda?
+- **Porcentagem de tudo**: a % do dia e da semana inclui tarefas, hábitos e estudo. As horas contam proporcionalmente (1h de uma meta de 2h vale 50% daquele item).
+- **Nada some**: uma tarefa flexível que não foi feita passa para a semana seguinte, e uma tarefa mensal passa para o mês seguinte. Na tela Hoje, ela aparece com a marcação "da semana passada".
+- **Sono são dois hábitos**: "dormir até 22h" e "acordar às 6h".
+- **A semana começa na segunda.**
+
+## Identidade visual
+
+Azul com um tema "meio Harry Potter": fundo azul-noite, detalhes em bronze, títulos em Cinzel e texto em EB Garamond. Quando o dia chega a 100%, o app mostra "Malfeito feito."
