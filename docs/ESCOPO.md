@@ -16,9 +16,10 @@ O planner de papel (no Samsung Notes) funcionava como visual, mas era estático:
 | # | Necessidade | Como o app atende |
 |---|---|---|
 | 1 | Tarefas recorrentes por **quantidade**, sem dia fixo ("banheiro 1x/semana") | Recorrência por meta: X vezes por semana ou por mês |
+| 1b | Tarefas em **dias fixos** ("toda terça", "todo sábado e domingo") | Recorrência por dias da semana |
 | 2 | Tarefa não feita vai para um **dia mais leve** | Realocação automática para o dia com menos carga na semana |
-| 3 | Grupos diferentes (casa, pós, trabalho…) | Grupos com nome e cor |
-| 4 | Acompanhar **sono** e **exercício** | Hábitos de sim/não por dia |
+| 3 | Grupos diferentes (casa, pós, rotina…) | Grupos com nome e cor |
+| 4 | Acompanhar **sono**, **exercício** e **trabalho** | Hábitos de sim/não por dia (o trabalho é só o check "Trabalhei hoje", de segunda a sexta) |
 | 5 | Acompanhar **horas de estudo** da pós | Registro de horas com meta por dia da semana (1h seg–qua, 2h qui–dom) |
 | 6 | Ver o progresso | **Porcentagem** do dia, da semana e de cada grupo |
 | 7 | Lembretes (horários ainda indefinidos) | Fase 2 |
@@ -27,19 +28,20 @@ O planner de papel (no Samsung Notes) funcionava como visual, mas era estático:
 
 ## Modelo
 
-- **Grupo**: nome e cor. Exemplos: Casa, Pós, Trabalho, Rotina.
+- **Grupo**: nome e cor. Exemplos: Rotina, Casa, Pós.
 - **Tarefa**: título, grupo e um destes tipos:
-  - *avulsa*: com ou sem data
-  - *diária*: rotina, como "alimentar a Chica"
-  - *X vezes por semana*: o app distribui as ocorrências pelos dias
+  - *uma vez*: com ou sem prazo
+  - *todo dia*: rotina, como "alimentar o Chico"
+  - *dias da semana*: "toda terça", "todo sábado e domingo"
+  - *X vezes por semana*: o app distribui as ocorrências nos dias mais leves
   - *X vezes por mês*: limpeza de geladeira, forno etc.
 - **Ocorrência**: uma instância da tarefa num dia, que fica *pendente* ou *feita*.
-- **Hábito**: sono e exercício, marcados como sim/não no dia, com meta semanal opcional (ex.: exercício 4x/semana).
+- **Hábito**: dormir até 22h, acordar às 6h, exercício e "trabalhei hoje", marcados como sim/não. Cada hábito vale em dias da semana configuráveis.
 - **Estudo**: horas registradas por dia, comparadas com a meta daquele dia da semana.
 
 ### Regra de realocação
 
-- Quando o dia acaba e uma ocorrência de tarefa semanal ou avulsa ficou pendente, ela é movida para o dia restante da semana **com menos ocorrências**. Se a semana acabou, ela vai para a semana seguinte.
+- Quando o dia acaba e uma ocorrência (de qualquer tipo, exceto diária) ficou pendente, ela é movida para o dia restante da semana **com menos ocorrências**. Se a semana acabou, ela vai para a semana seguinte.
 - Pelo botão "Adiar", a Letícia aplica a mesma regra na hora.
 - Tarefas mensais não ficam presas a um dia: elas formam o checklist do mês.
 - Tarefas diárias **não** são movidas. Se ela não fez, aquele dia fica com a porcentagem menor.
@@ -50,10 +52,11 @@ O planner de papel (no Samsung Notes) funcionava como visual, mas era estático:
 2. **Semana**: grade de seg a dom no estilo da planilha, com a % da semana e a % de cada grupo.
 3. **Tarefas**: criar e editar tarefas, grupos e recorrências.
 
-## Decisões técnicas (proposta)
+## Decisões técnicas
 
-- **PWA** (React + TypeScript + Vite): ela instala pelo navegador, e as atualizações chegam só com o link, sem loja de apps.
-- **Dados locais no celular** (IndexedDB), com exportar/importar backup. Como só ela usa, não precisa de servidor.
+- **PWA** (React + TypeScript + Vite), publicado no GitHub Pages: ela instala pelo navegador, e as atualizações chegam sozinhas, sem loja de apps.
+- **Dados locais no celular** (`localStorage`), com exportar/importar backup.
+- **Primeiro uso**: os dias anteriores à instalação não entram na porcentagem. Como só ela usa, não precisa de servidor.
 - **Lembretes (fase 2)**: notificações agendadas no Android são pouco confiáveis num PWA sem servidor. Quando ela definir os horários, a ideia é empacotar o app com **Capacitor** (vira um APK) e usar notificações locais.
 
 ## Fases
@@ -71,4 +74,8 @@ O planner de papel (no Samsung Notes) funcionava como visual, mas era estático:
 
 ## Identidade visual
 
-Azul com um tema "meio Harry Potter", em tons pastel e delicados: fundo azul bem claro, cartões brancos, destaques em azul-lavanda, títulos em lilás e grupos em menta, pêssego, azul e lilás. Os títulos usam Cinzel e o texto usa EB Garamond. Quando o dia chega a 100%, o app mostra "Malfeito feito."
+Neutra, em tons pastel e delicados: fundo azul bem claro, cartões brancos, destaques em azul-lavanda, títulos em lilás e grupos em menta, pêssego, azul e lilás. A fonte é Nunito.
+
+## Feedback do protótipo
+
+O protótipo foi validado, com estes ajustes: o gato é **o Chico**; o tema deve ser neutro, sem referências a Harry Potter; as tarefas precisam repetir em dias fixos da semana; e o trabalho é apenas um check diário.
