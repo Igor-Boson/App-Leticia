@@ -71,4 +71,4 @@ O planner de papel (no Samsung Notes) funcionava como visual, mas era estático:
 
 ## Identidade visual
 
-Azul com um tema "meio Harry Potter": fundo azul-noite, detalhes em bronze, títulos em Cinzel e texto em EB Garamond. Quando o dia chega a 100%, o app mostra "Malfeito feito."
+Azul com um tema "meio Harry Potter", em tons pastel e delicados: fundo azul bem claro, cartões brancos, destaques em azul-lavanda, títulos em lilás e grupos em menta, pêssego, azul e lilás. Os títulos usam Cinzel e o texto usa EB Garamond. Quando o dia chega a 100%, o app mostra "Malfeito feito."
